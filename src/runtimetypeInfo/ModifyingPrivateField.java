@@ -36,6 +36,4 @@ public class ModifyingPrivateField{
         System.out.println(pf);
     }
 
-
-
 }
