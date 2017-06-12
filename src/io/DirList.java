@@ -35,6 +35,7 @@ class DirFilter implements FilenameFilter{
         pattern = Pattern.compile(regex);
     }
     public boolean accept(File dir, String name) {
+        System.out.println("now we use this method");
         return pattern.matcher(name).matches();
     }
 }
