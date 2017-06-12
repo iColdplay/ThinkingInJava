@@ -3,7 +3,6 @@ package io;
 /**
  * Created by root on 17-6-12.
  */
-import java.util.function.Consumer;
 import java.util.regex.Pattern;
 import java.io.*;
 import java.util.*;
@@ -31,16 +30,6 @@ public final class Directory {
         @Override
         public Iterator<File> iterator() {
             return files.iterator();
-        }
-
-        @Override
-        public void forEach(Consumer<? super File> action) {
-
-        }
-
-        @Override
-        public Spliterator<File> spliterator() {
-            return null;
         }
 
         void addAll(TreeInfo other) {
