@@ -43,35 +43,35 @@ public final class Directory {
 
     }
 
-        public static TreeInfo walk(String start, String regex){
-            return recurseDirs(new File(start), regex);
-        }
+    public static TreeInfo walk(String start, String regex){
+        return recurseDirs(new File(start), regex);
+    }
 
-        public static TreeInfo walk(File start, String regex){
-            return recurseDirs(start, regex);
-        }
+    public static TreeInfo walk(File start, String regex){
+        return recurseDirs(start, regex);
+    }
 
-        public static TreeInfo walk(File start){
-            return recurseDirs(start, ".*");
-        }
+    public static TreeInfo walk(File start){
+        return recurseDirs(start, ".*");
+    }
 
-        public static TreeInfo walk(String start){
-            return recurseDirs(new File(start), ".*");
-        }
+    public static TreeInfo walk(String start){
+        return recurseDirs(new File(start), ".*");
+    }
 
-        static TreeInfo recurseDirs(File startDir, String regex){
-            TreeInfo result = new TreeInfo();
-            for(File item : startDir.listFiles()){
-                if(item.isDirectory()){
-                    result.dirs.add(item);
-                }else{
-                    if(item.getName().matches(regex)){
-                        result.files.add(item);
-                    }
+    static TreeInfo recurseDirs(File startDir, String regex){
+        TreeInfo result = new TreeInfo();
+        for(File item : startDir.listFiles()){
+            if(item.isDirectory()){
+                result.dirs.add(item);
+            }else{
+                if(item.getName().matches(regex)){
+                    result.files.add(item);
                 }
             }
-            return result;
         }
+        return result;
+    }
     public static void main(String[] args){
         if(args.length == 0)
             System.out.println(walk("."));
