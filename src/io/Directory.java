@@ -73,12 +73,16 @@ public final class Directory {
         return result;
     }
     public static void main(String[] args){
+        if(args.length == 0){
+            main(new String[]{"/home/file_file"});
+        }else{
         if(args.length == 0)
             System.out.println(walk("."));
         else
             for (String arg : args){
-                System.out.println(walk(arg));
+                System.out.println(walk(arg) + "\n");
             }
+        }
     }
 
 }
