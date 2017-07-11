@@ -14,9 +14,9 @@ public class GetChannel {
         FileChannel fc = new FileOutputStream("data.txt").getChannel();
         fc.write(ByteBuffer.wrap("Something".getBytes()));
         fc.close();
-        fc = new RandomAccessFile("data.txt","rw").getChannel();
+        fc = new RandomAccessFile("data.txt","rw").getChannel();//use RandomAccessFile to reopen the FC,to move our fc to anywhere in the file
         fc.position(fc.size());
-        fc.write(ByteBuffer.wrap("Something else".getBytes()));
+        fc.write(ByteBuffer.wrap("at the end of the file, we add Something else".getBytes()));
         fc.close();
         fc = new FileInputStream("data.txt").getChannel();
         ByteBuffer buff = ByteBuffer.allocate(BSIZE);
