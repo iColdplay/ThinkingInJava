@@ -28,6 +28,7 @@ public class BufferToText {
         fc.write(ByteBuffer.wrap("some text".getBytes("UTF-16BE")));
         fc.close();
         //Try read the buff again
+
         fc = new FileInputStream("data2.txt").getChannel();
         buff.clear();
         fc.read(buff);
