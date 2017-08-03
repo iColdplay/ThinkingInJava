@@ -1,8 +1,8 @@
 package io;
 
 import java.io.*;
-import java.nio.IntBuffer;
-import java.nio.channels.FileChannel;
+import java.nio.*;
+import java.nio.channels.*;
 
 public class MappedIO {
     private static int numberOfInts = 4000000;
@@ -25,7 +25,6 @@ public class MappedIO {
     }
     private static Tester[] test = {
             new Tester("Stream Write") {
-                @Override
                 public void test() throws IOException {
                     DataOutputStream dos =
                             new DataOutputStream(
@@ -40,14 +39,21 @@ public class MappedIO {
                 }
             },
             new Tester("Mapped Write") {
-                @Override
-                public void test() throws IOException {
-                    FileChannel fc = new RandomAccessFile("temp.tmp", "rw").getChannel();
-                    IntBuffer ib = fc.map(FileChannel.MapMode.READ_WRITE, 0, fc.size()).asIntBuffer();
-                    for (int i = 0; i < numberOfInts; i++) {
-                        ib.put(i);
+                public void test()  {
+                    try {
+                        FileChannel fc = new RandomAccessFile("temp.tmp", "rw").getChannel();
+                        System.out.println("show the fc.size-->" + fc.size());
+                        IntBuffer ib = fc.map(FileChannel.MapMode.READ_WRITE, 0, fc.size()).asIntBuffer();
+                        System.out.println("show the ib.limit-->" + ib.limit());
+                        for (int i = 0; i < numberOfInts; i++) {
+                            //System.out.println("show put data-->" + i);
+                            ib.put(i);
+                        }
+                        fc.close();
+                    }catch (Exception e){
+                        System.out.println("we got a exception here");
+                        e.printStackTrace();
                     }
-                    fc.close();
                 }
             },
             new Tester("Stream Read") {
